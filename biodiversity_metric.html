@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Razient Corporation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+        header {
+            background-color: #2e7d32;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 2em;
+        }
+        nav {
+            background: #1b5e20;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 1.2em;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        nav .username {
+            color: white;
+            font-size: 1.2em;
+            margin-left: 15px;
+        }
+        nav .logout-button {
+            padding: 10px 20px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 15px;
+        }
+        nav .logout-button:hover {
+            background-color: #e53935;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .form-section {
+            margin-bottom: 20px;
+        }
+        .form-section h2 {
+            margin-bottom: 10px;
+            font-size: 1.5em;
+            color: #333;
+        }
+        .form-section input, .form-section select {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .form-section label {
+            display: block;
+            margin: 5px 0;
+            color: #555;
+        }
+        .button-section {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .button-section button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 1em;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .button-primary {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .button-secondary {
+            background-color: #f44336;
+            color: white;
+        }
+        .map-section {
+            margin: 20px 0;
+        }
+        .map-placeholder {
+            width: 100%;
+            height: 300px;
+            background: #ccc;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #666;
+        }
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            background: #1b5e20;
+            color: white;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        Razient Corporation
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="contact.html">Contact</a>
+        <span class="username" id="welcome-username" style="display: none;"></span>
+        <button class="logout-button" id="logout-button" style="display: none;" onclick="logout()">Logout</button>
+    </nav>
+
+    <div class="container">
+        <!-- Project Details Section -->
+        <div class="form-section">
+            <h2>Project Details</h2>
+            <label for="planning-authority">Planning Authority</label>
+            <input type="text" id="planning-authority" placeholder="Enter planning authority">
+
+            <label for="project-name">Project Name</label>
+            <input type="text" id="project-name" placeholder="Enter project name">
+
+            <label for="applicant">Applicant</label>
+            <input type="text" id="applicant" placeholder="Enter applicant name">
+
+            <label for="application-type">Application Type</label>
+            <input type="text" id="application-type" placeholder="Enter application type">
+
+            <label for="application-ref">Planning Application Reference</label>
+            <input type="text" id="application-ref" placeholder="Enter application reference">
+
+            <label for="target-gain">Target % Net Gain</label>
+            <input type="number" id="target-gain" placeholder="Enter target % net gain">
+        </div>
+
+        <!-- Map Section -->
+        <div class="map-section">
+            <h2>On-Site Baseline Map</h2>
+            <div class="map-placeholder">Baseline map will be displayed here</div>
+        </div>
+
+        <!-- Buttons Section -->
+        <div class="button-section">
+            <button class="button-primary">Main Menu</button>
+            <button class="button-primary">Results</button>
+            <button class="button-secondary">Reset View</button>
+            <button class="button-primary">View All</button>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2025 Razient Corporation. All Rights Reserved.
+    </footer>
+
+    <script>
+        // Check if the user is logged in and set the welcome message
+        const isLoggedIn = sessionStorage.getItem('loggedIn');
+        const username = sessionStorage.getItem('username');
+
+        if (isLoggedIn && username) {
+            const welcomeElement = document.getElementById('welcome-username');
+            welcomeElement.textContent = `Welcome, ${username}`;
+            welcomeElement.style.display = 'inline';
+
+            const logoutButton = document.getElementById('logout-button');
+            logoutButton.style.display = 'inline';
+        } else {
+            // Redirect to login if not logged in
+            window.location.href = 'login.html';
+        }
+
+        function logout() {
+            sessionStorage.removeItem('loggedIn');
+            sessionStorage.removeItem('username');
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage - Razient Corporation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+        header {
+            background-color: #2e7d32;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 2em;
+        }
+        nav {
+            background: #1b5e20;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 1.2em;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .hero {
+            background-image: url('https://via.placeholder.com/1200x400'); /* Replace with a proper image */
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            color: white;
+            padding: 100px 20px;
+            font-size: 1.5em;
+        }
+        .hero h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .hero p {
+            font-size: 1.2em;
+            margin-top: 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .section h2 {
+            color: #2e7d32;
+            font-size: 1.8em;
+        }
+        .section ul {
+            list-style: none;
+            padding: 0;
+        }
+        .section ul li {
+            background: #e8f5e9;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            background: #1b5e20;
+            color: white;
+            margin-top: 20px;
+        }
+        .logout-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .logout-button {
+            padding: 10px 20px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .logout-button:hover {
+            background-color: #e53935;
+        }
+        .username {
+            color: white;
+            font-size: 1.2em;
+            margin-right: 15px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        Razient Corporation
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="contact.html">Contact</a>
+        <a href="login.html" id="login-link">Login</a>
+        <span id="biodiversity-link" style="display: none;"><a href="biodiversity_metric.html">Biodiversity Metric</a></span>
+        <span id="logout-container" style="display: none;">
+            <span id="username" class="username"></span>
+            <button class="logout-button" onclick="logout()">Logout</button>
+        </span>
+    </nav>
+
+    <div class="hero">
+        <h1>Empowering Sustainability Through Technology</h1>
+        <p>Revolutionizing biodiversity tracking and reporting with cutting-edge solutions.</p>
+    </div>
+
+    <div class="container">
+        <div class="section">
+            <h2>About Us</h2>
+            <p>Biodiversity Metrics is dedicated to creating innovative technical solutions for environmental monitoring and biodiversity management. Our mission is to empower industries with tools to monitor, track, and report their ecological impact effectively.</p>
+        </div>
+
+        <div class="section">
+            <h2>Our Services</h2>
+            <ul>
+                <li><strong>Environmental Monitoring:</strong> Advanced IoT-based solutions to gather real-time ecological data.</li>
+                <li><strong>Biodiversity Tracking:</strong> AI-driven systems for species identification and habitat analysis.</li>
+                <li><strong>Sustainability Reporting:</strong> Comprehensive tools for ESG reporting and compliance.</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2025 Razient Corporation. All Rights Reserved.
+    </footer>
+
+    <script>
+        function logout() {
+            sessionStorage.removeItem('loggedIn');
+            sessionStorage.removeItem('username');
+            window.location.href = 'login.html';
+        }
+
+        // Manage navbar visibility based on login status
+        const isLoggedIn = sessionStorage.getItem('loggedIn');
+        const username = sessionStorage.getItem('username');
+
+        if (isLoggedIn) {
+            document.getElementById('biodiversity-link').style.display = 'inline';
+            document.getElementById('logout-container').style.display = 'inline';
+            document.getElementById('login-link').style.display = 'none';
+            if (username) {
+                document.getElementById('username').textContent = `Welcome, ${username}`;
+            }
+        }
+    </script>
+</body>
+</html>
